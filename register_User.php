@@ -12,7 +12,7 @@
         $city = get_safe_value($con, $_POST['city']);
         $state = get_safe_value($con, $_POST['state']);
      
-        $sql = "INSERT INTO `register_user` (`firstname`, `lastname`, `username`, `email`, `password`, `address`, `country`, `city`, `state`) VALUES ('$firstname', '$lastname', '$username', '$email', ' $password', '$address', '$country', '$city', '$state');"; 
+        $sql = "INSERT INTO `registered_user` (`firstname`, `lastname`, `username`, `email`, `user_password`, `address`, `country`, `city`, `state`) VALUES ('$firstname', '$lastname', '$username', '$email', ' $password', '$address', '$country', '$city', '$state');"; 
         //$res=mysqli_query($con, $sql);
         if ($con->query($sql) === TRUE) {
             echo "New record created successfully";

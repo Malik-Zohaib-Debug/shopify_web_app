@@ -1,20 +1,21 @@
-<?php
-    require("connection.php");
-if (isset($_POST['submit'])) {
-    $username = get_safe_value($con, $_POST['username']);
-    $password = get_safe_value($con, $_POST['password']);
-
-    $sql = "SELECT * FROM admin_user WHERE username='$username' AND password='$password'";
-    $res = mysqli_query($con, $sql);
-    $count = mysqli_num_rows($res);
-    if ($count > 0) {
-        $_SESSION['ADMIN_LOGIN'] = 'yes';
-        $_SESSION['ADMIN_USERNAME'] = $username;
-        header('location: categories.php');
-    } else {
-        $msg = "Please enter correct login details";
+<?php 
+    require('connection.php');
+    if (isset($_POST['submit'])) {
+        $username = mysqli_real_escape_string($con, $_POST['username']);
+        $password = mysqli_real_escape_string($con, $_POST['password']);
+    
+        $sql = "SELECT * FROM registered_user WHERE username='$username' AND user_password='$password'";
+        $res = mysqli_query($con, $sql);
+        $num = mysqli_num_rows($res);
+        if ($num > 0) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['ADMIN_USERNAME'] = $username;
+            header('location: home.php');
+        } else {
+            echo "Please enter correct login details";
+        }
     }
-}
+    
 ?>
 <?php
     require("nav.php");

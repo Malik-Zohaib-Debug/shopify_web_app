@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -8,6 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
 
     <title>Shopily</title>
 </head>
@@ -35,10 +39,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login_user.php">Login As User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login As Admin</a>
+                        <a class="nav-link" href="login.php">Login As User</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="register_User.php">SignUp</a>
@@ -48,6 +49,16 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-warning" type="submit">Search</button>
                 </form>
+            </div>
+            <div>
+            <?php
+                $count=0;
+                if(isset($_SESSION['cart']));
+                {
+                    $count=count($_SESSION['cart']);
+                }
+                ?>
+                <a href="mycart.php" class="btn btn-outline-success">My Cart(<?php echo $count ; ?>)</a>
             </div>
         </div>
     </nav>
